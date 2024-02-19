@@ -1,0 +1,83 @@
+name: package
+description: A Flutter utils package
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  cached_network_image: ^3.3.0
+  connectivity_plus: ^5.0.2
+  dartz: ^0.10.1
+  flutter:
+    sdk: flutter
+  flutter_spinkit: ^5.2.0
+  flutter_svg: ^2.0.9
+  formz: ^0.6.1
+  google_fonts: ^6.1.0
+  http: ^1.1.2
+  image_picker: ^1.0.6
+  intl: ^0.19.0
+  intl_phone_field: ^3.2.0
+  pinput: ^3.0.1
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/logos/
+
+
+  fonts:
+    - family: Plus Jakarta
+      fonts:
+        - asset: assets/fonts/plus_jakarta/PlusJakartaDisplay-Regular.otf
+        - asset: assets/fonts/plus_jakarta/PlusJakartaDisplay-Medium.otf
+          weight: 500
+        - asset: assets/fonts/plus_jakarta/PlusJakartaDisplay-Bold.otf
+          weight: 700
+    - family: Grandis Extended
+      fonts:
+        - asset: assets/fonts/grandis_extended/GrandisExtended-Regular.ttf
+        - asset: assets/fonts/grandis_extended/GrandisExtended-Thin.ttf
+          weight: 300
+        - asset: assets/fonts/grandis_extended/GrandisExtended-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/grandis_extended/GrandisExtended-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/grandis_extended/GrandisExtended-Black.ttf
+          weight: 900
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/InterBold.ttf
+          weight: 700
+        - asset: assets/fonts/inter/InterSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/InterMedium.ttf
+          weight: 500
+        - asset: assets/fonts/inter/InterBlackItalic.ttf
+          weight: 900
+        - asset: assets/fonts/inter/InterRegular.ttf
+          weight: 400
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/raleway/RalewayRomanSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/raleway/RalewayRomanRegular.ttf
+          weight: 400
+        - asset: assets/fonts/raleway/RalewayRomanBold.ttf
+          weight: 700
+        - asset: assets/fonts/raleway/RalewayRomanMedium.ttf
+          weight: 500
+    - family: SF Pro Display
+      fonts:
+        - asset: assets/fonts/sf_pro/SFProDisplayRegular.ttf
+          weight: 400
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Bold.ttf
+        - asset: assets/fonts/Urbanist-Medium.ttf
+        - asset: assets/fonts/Urbanist-SemiBold.ttf

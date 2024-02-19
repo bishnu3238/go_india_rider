@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "962315396178",
+    "firebase_url": "https://go-bharat-48f12-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "go-bharat-48f12",
+    "storage_bucket": "go-bharat-48f12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962315396178:android:b0d204252e2ee05aeb2b8b",
+        "android_client_info": {
+          "package_name": "com.eazytechno.go_india_rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962315396178-74spgdf3nmg7grn65eb5v04v4eguole6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eazytechno.go_india_rider",
+            "certificate_hash": "4807e3a723ee7d42011386f3e62bdb2c81c241c6"
+          }
+        },
+        {
+          "client_id": "962315396178-8elob2ma5t5hvuqt3jis0iurc314sgar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eazytechno.go_india_rider",
+            "certificate_hash": "aba230377201c69fb77c9e249c96c2c03a1e1b65"
+          }
+        },
+        {
+          "client_id": "962315396178-opk02mhrusq7d2coe81v3q450sttpe2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eazytechno.go_india_rider",
+            "certificate_hash": "01bc8b8f1f0d9fe7e1a7ca15c5e3f6f6c8ac11d4"
+          }
+        },
+        {
+          "client_id": "962315396178-0up719duv9picbc6mhd5va63plddkigs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-kR4XtwOQnjtNED1BaUaGqw2WpE7DNdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962315396178-0up719duv9picbc6mhd5va63plddkigs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962315396178-oonkm4im5oqmcrrqcelf3185r86jlid8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.eazytechno.goIndiaRider"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
