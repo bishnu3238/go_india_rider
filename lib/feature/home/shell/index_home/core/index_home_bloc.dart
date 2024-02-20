@@ -1,16 +1,13 @@
 import 'dart:async';
-import 'dart:ui';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:go_india_rider/core/domain/entity/export.dart';
-import 'package:go_india_rider/core/domain/store/export.dart';
-import 'package:go_india_rider/utils/constant/global_variables.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:package/package.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../../core/data/repository/export.dart';
+ import '../../../../../core/domain/entity/export.dart';
 import '../../../../../core/domain/repository/export.dart';
+import '../../../../../core/domain/store/export.dart';
+import '../../../../../utils/constant/global_variables.dart';
 import 'index_home_event.dart';
 import 'index_home_state.dart';
 
@@ -18,12 +15,12 @@ class IndexHomeBloc extends Bloc<IndexHomeEvent, IndexHomeState> {
   final UserLocationStore userLocationStore;
   final LocationRepository locationRepository;
 
-  final GoogleMapRepository googleMapRepository;
+  final  MapRepository mapRepository;
   final MapControllerRepository mapControllerRepository;
   IndexHomeBloc({
     required this.userLocationStore,
     required this.locationRepository,
-    required this.googleMapRepository,
+    required this.mapRepository,
     required this.mapControllerRepository,
   }) : super(IndexHomeState.init(const LatLng(0.0, 0.0))) {
     on<IndexHomeMapTypeChangeEvent>(_onMapTypeChangeEvent);

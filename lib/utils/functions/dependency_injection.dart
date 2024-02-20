@@ -1,5 +1,4 @@
-
- import 'package:package/package.dart';
+import 'package:package/package.dart';
 import '../../core/data/repository/export.dart';
 import '../../core/data/repository/map/google_map_controller_repository.dart';
 import '../../core/domain/entity/export.dart';
@@ -19,20 +18,24 @@ import '../../feature/place_search/core/place_search_cubit.dart';
 import '../constant/global_variables.dart';
 
 Future<void> dependencyInjection() async {
+  ///
   /// service .................................................................;
   getIt.registerLazySingleton<Notifier>(() => Notifier());
   getIt.registerLazySingleton<NetworkService>(() => NetworkService());
 
+  ///
   /// stores ..................................................................;
   getIt.registerLazySingleton<UserStore>(() => UserStore());
   getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
-  getIt.registerLazySingleton(() => GoogleMapStore());
+  getIt.registerLazySingleton<GoogleMapStore>(() => GoogleMapStore());
 
   getIt.registerLazySingleton<UserLocationStore>(() => UserLocationStore());
   getIt.registerLazySingleton<ApplicationStore>(() => ApplicationStore(
+        notifier: getIt<Notifier>(),
         locationRepository: getIt<LocationRepository>(),
       ));
 
+  ///
   /// Repositories ............................................................;
   getIt.registerLazySingleton<AuthRepository<UserEntity>>(() => RemoteAuthRepository(
         networkService: getIt<NetworkService>(),
@@ -44,14 +47,19 @@ Future<void> dependencyInjection() async {
         networkService: getIt<NetworkService>(),
       ));
 
-  getIt.registerLazySingleton<LocationRepository>(
-      () => RemoteLocationRepository(getIt<UserLocationStore>()));
-  getIt.registerLazySingleton<GoogleMapRepository>(
-      () => GoogleMapRepository(getIt<NetworkService>(), getIt<UserLocationStore>()));
+  getIt.registerLazySingleton<LocationRepository>(() => RemoteLocationRepository(
+        getIt<UserLocationStore>(),
+      ));
+  getIt.registerLazySingleton<MapRepository>(() => GoogleMapRepository(
+        getIt<NetworkService>(),
+        getIt<UserLocationStore>(),
+      ));
 
   getIt.registerLazySingleton<MapControllerRepository>(
-      () => GoogleMapControllerRepository());
+    () => GoogleMapControllerRepository(),
+  );
 
+  ///
   /// user cases ..............................................................;
   getIt.registerSingleton<UpdateProfileImageUseCase>(UpdateProfileImageUseCase(
     getIt<UserRepository<UserEntity>>(),
@@ -59,18 +67,15 @@ Future<void> dependencyInjection() async {
     getIt<NetworkService>(),
   ));
 
-  /// form state ..............................................................;
-
+  ///
   /// screens .................................................................;
 
-  // getIt.registerLazySingleton<LocationBloc>(() => LocationBloc(
-  //       locationRepository: getIt<LocationRepository>(),
-  //     )..add(GetDeviceCurrentLocation()));
-
+  // [INTRO-CUBIT]
   getIt.registerLazySingleton<IntroCubit>(
     () => IntroCubit()..init(),
   );
 
+  // [HOME-CUBIT]
   getIt.registerFactoryParam<HomeCubit, HomeInitialParams, dynamic>(
       (param1, param2) => HomeCubit(
             params: param1,
@@ -78,13 +83,15 @@ Future<void> dependencyInjection() async {
             notifier: getIt<Notifier>(),
           ));
 
+  // [INDEX-HOME-BLOC]
   getIt.registerLazySingleton<IndexHomeBloc>(() => IndexHomeBloc(
         userLocationStore: getIt<UserLocationStore>(),
         locationRepository: getIt<LocationRepository>(),
-        googleMapRepository: getIt<GoogleMapRepository>(),
+        mapRepository: getIt<MapRepository>(),
         mapControllerRepository: getIt<MapControllerRepository>(),
       ));
 
+  // [OTP-CUBIT]
   getIt.registerFactoryParam<OtpCubit, OtpInitialParams, dynamic>(
       (param1, param2) => OtpCubit(
             params: param1,
@@ -92,14 +99,16 @@ Future<void> dependencyInjection() async {
             notifier: getIt<Notifier>(),
           ));
 
+  // [PLACE-SEARCH-CUBIT]
   getIt.registerLazySingleton(() => PlaceSearchCubit(
         getIt<Notifier>(),
         userLocationStore: getIt<UserLocationStore>(),
         locationRepository: getIt<LocationRepository>(),
-        googleMapRepository: getIt<GoogleMapRepository>(),
+        mapRepository: getIt<MapRepository>(),
         mapControllerRepository: getIt<MapControllerRepository>(),
       ));
 
+  // [MAP-CUBIT]
   getIt.registerLazySingleton(() => MapCubit(
         googleMapStore: getIt<GoogleMapStore>(),
         googleMapRepository: getIt<MapRepository>(),

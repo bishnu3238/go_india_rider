@@ -7,8 +7,8 @@ import 'map_current_button.dart';
 import 'map_view.dart';
 import 'map_search_bar.dart';
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({super.key});
+class IndexHomeBody extends StatelessWidget {
+  const IndexHomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -85,8 +85,10 @@ class TextFieldX extends StatelessWidget {
                     label: label,
                     prefix: prefix,
                     suffix: suffix,
+                    radius: radius,
                     prefixIcon: prefixIcon,
-                    suffixIcon: suffixIcon, context: context,
+                    suffixIcon: suffixIcon,
+                    context: context,
                   )
                 : inputDecorationWithoutBorder(
                     hint: hint,
@@ -94,7 +96,8 @@ class TextFieldX extends StatelessWidget {
                     prefix: prefix,
                     suffix: suffix,
                     prefixIcon: prefixIcon,
-                    suffixIcon: suffixIcon, context: context,
+                    suffixIcon: suffixIcon,
+                    context: context,
                   )));
   }
 }

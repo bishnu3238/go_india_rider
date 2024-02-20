@@ -13,7 +13,7 @@ class IndexHome extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             IndexAppBar(),
-            HomeBody(),
+            IndexHomeBody(),
           ],
         ),
       ),

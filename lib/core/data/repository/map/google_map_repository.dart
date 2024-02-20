@@ -14,27 +14,27 @@ class GoogleMapRepository implements MapRepository {
 
   GoogleMapRepository(this._networkService, this.userLocationStore);
 
+  @override
   Future<String> getPlaceId(String query) async {
     return await _networkService.get(Api.getPlaceApi).then((value) => value as String);
   }
 
   @override
-  Future<String> getAddressFromGeographyCoordinates(Position position) async {
+  Future<Either<MapRepositoryFailure, dynamic>> getAddressFromGeographyCoordinates(
+      LatLng latLng) async {
     return _networkService
-        .get2(Api.googleAddressFromGeographyCoordinates(position))
+        .get2(Api.googleAddressFromGeographyCoordinates(latLng))
         .then((value) => value.fold(
-              (l) => '',
-              (r) => r['results'][0]['formatted_address'],
+              (l) => left(MapRepositoryFailure(error: l.error)),
+              (r) => right(r['results'][0]['formatted_address']),
             ));
   }
 
   @override
   Future<Either<MapRepositoryFailure, PlaceAutoCompleteResponseModel>>
       placeAutoCompleteSearch(String query) async {
-    var position = userLocationStore.state.currentLocation;
-    LatLng latLng = LatLng(position.lat, position.lng);
     return _networkService
-        .get2(Api.googlePlaceAutoCompleteApi(query, latLng))
+        .get2(Api.googlePlaceAutoCompleteApi(query))
         .then((value) => value.fold(
               (l) => left(MapRepositoryFailure(error: l.error)),
               (r) {
@@ -48,7 +48,7 @@ class GoogleMapRepository implements MapRepository {
   Future<Either<MapRepositoryFailure, GoogleTextSearchModel>> googleTextSearch(
       String query) async {
     return await _networkService
-        .get2(Api.googleTextSearchApi(query))
+        .get2(Api.googlePlaceAutoCompleteApi(query))
         .then((value) => value.fold(
               (l) => left(MapRepositoryFailure(error: l.error)),
               (r) {
@@ -68,8 +68,20 @@ class GoogleMapRepository implements MapRepository {
       String destination, origin, TravelMode mode) async {
     return await _networkService
         .get2(Api.getRouteDirectionApi(destination, origin, mode.name))
-        .then((value) => value.fold((l) => left(MapRepositoryFailure(error: l.error)), (r) {
-          return right(RouteDirectionModel.empty);
-    }));
+        .then(
+            (value) => value.fold((l) => left(MapRepositoryFailure(error: l.error)), (r) {
+                  return right(RouteDirectionModel.empty);
+                }));
+  }
+
+  @override
+  Future<Either<MapRepositoryFailure, dynamic>> getAddressFromPlaceId(
+      String placeId) async {
+    return await _networkService
+        .get2(Api.getAddressFromPlaceIdApi(placeId))
+        .then((value) => value.fold(
+              (l) => left(MapRepositoryFailure(error: l.error)),
+              (r) => right(unit),
+            ));
   }
 }

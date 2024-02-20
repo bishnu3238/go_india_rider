@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:go_india_rider/core/domain/store/export.dart';
 import 'package:package/package.dart';
+import '../../../../../core/domain/store/export.dart';
 import '../core/index_home_bloc.dart';
 import 'package:flutter/gestures.dart';
 import '../core/index_home_state.dart';
@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/domain/repository/export.dart';
-import '../../../../../utils/constant/global_variables.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapView extends StatefulWidget {
@@ -90,6 +88,11 @@ class _MapViewState extends State<MapView> {
             initialCameraPosition: _initialCameraPosition,
             compassEnabled: false,
             zoomControlsEnabled: false,
+            trafficEnabled: true,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+            mapToolbarEnabled: true,
+
           ),
         );
       },

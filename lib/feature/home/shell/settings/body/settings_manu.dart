@@ -34,8 +34,8 @@ class SettingMenu extends StatelessWidget {
                 onPress: () {},
                 endWidget: Switch(
                     value: state.isDarkTheme,
-                    onChanged: (value) => bloc
-                        .setTheme(value ? ThemeMode.dark : ThemeMode.light)),
+                    onChanged: (value) =>
+                        bloc.setTheme(value ? ThemeMode.dark : ThemeMode.light)),
               );
             },
           ),

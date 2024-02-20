@@ -12,7 +12,7 @@ class ApplicationState {
 
   @override
   String toString() =>
-      'AppState{isFirstTimeInstall: $isFirstTimeInstall, isLoading: $isLoading}';
+      'ApplicationState{isFirstTimeInstall: $isFirstTimeInstall, isPermissionGranted: $isPermissionGranted, isLoading: $isLoading}';
 
   ApplicationState copyWith({
     bool? isLoading,

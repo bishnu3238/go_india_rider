@@ -63,6 +63,11 @@ class _PickupLocationFieldState extends State<PickupLocationField> {
               icon: state.placeSearchType == PlaceSearchType.pickup
                   ? FontAwesomeIcons.solidCircle
                   : FontAwesomeIcons.circle,
+              onTap: () {
+                state.destinationController.selection = TextSelection(
+                    baseOffset: 0, extentOffset: state.destinationController.length);
+                cubit.searchType(PlaceSearchType.destination);
+              },
             ),
             suffixIcon: FavIcon(
               size: 18,
@@ -80,7 +85,7 @@ class _PickupLocationFieldState extends State<PickupLocationField> {
 }
 
 class DestinationLocationField extends StatefulWidget {
-  const DestinationLocationField();
+  const DestinationLocationField({super.key});
 
   @override
   State<DestinationLocationField> createState() => _DestinationLocationFieldState();
@@ -120,12 +125,18 @@ class _DestinationLocationFieldState extends State<DestinationLocationField> {
                 icon: state.placeSearchType == PlaceSearchType.destination
                     ? FontAwesomeIcons.solidCircle
                     : FontAwesomeIcons.circle,
+                onTap: () {
+                  state.destinationController.selection = TextSelection(
+                      baseOffset: 0, extentOffset: state.destinationController.length);
+                  cubit.searchType(PlaceSearchType.destination);
+                },
               ),
               suffixIcon: state.placeSearchType == PlaceSearchType.destination
                   ? FavIcon(
                       icon: FontAwesomeIcons.x,
                       size: 15,
                       onTap: cubit.removeFieldValue,
+                      iconColor: color.primary,
                     )
                   : const SizedBox(),
               hintText: "Destination location",

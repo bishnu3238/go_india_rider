@@ -6,7 +6,6 @@ import '../../../core/domain/entity/export.dart';
 enum PlaceSearchType { pickup, destination, breakJourney }
 
 class PlaceSearchState extends Equatable {
-  final bool isDone;
   final UserLocation pickupLocation, destinationLocation;
   final List<UserLocation> breakLocation;
 
@@ -16,10 +15,9 @@ class PlaceSearchState extends Equatable {
   final PlaceSearchType placeSearchType;
   // final PlaceSearchType isSearchPickup, isSearchDestination, isSearchBreak;
 
-  final List<TextSearchResultModel> predictions;
+  final List<AutoCompletePredictionModel> predictions;
 
   const PlaceSearchState({
-    this.isDone = false,
     required this.pickupLocation,
     required this.destinationLocation,
     required this.predictions,
@@ -46,18 +44,18 @@ class PlaceSearchState extends Equatable {
   );
 
   get noSuggestions => predictions.isEmpty;
+  bool get isDone => !pickupLocation.isEmpty && !destinationLocation.isEmpty;
 
   @override
   String toString() {
-    return 'PlaceSearchState{isDone: $isDone, pickupLocation: $pickupLocation, destinationLocation: $destinationLocation, breakLocation: $breakLocation, pickupController: $pickupController, destinationController: $destinationController, placeSearchType: $placeSearchType, predictions: $predictions}';
+    return 'PlaceSearchState{ pickupLocation: $pickupLocation, destinationLocation: $destinationLocation, breakLocation: $breakLocation, pickupController: $pickupController, destinationController: $destinationController, placeSearchType: $placeSearchType, predictions: $predictions}';
   }
 
   PlaceSearchState copyWith({
-    bool? isDone,
     UserLocation? pickupLocation,
     UserLocation? destinationLocation,
     List<UserLocation>? breakLocation,
-    List<TextSearchResultModel>? predictions,
+    List<AutoCompletePredictionModel>? predictions,
     String? pickupValue,
     String? destinationValue,
     PlaceSearchType? placeSearchType,
@@ -65,7 +63,6 @@ class PlaceSearchState extends Equatable {
     bool? isSearchPickup,
   }) {
     return PlaceSearchState(
-      isDone: isDone ?? this.isDone,
       predictions: predictions ?? this.predictions,
       breakLocation: breakLocation ?? this.breakLocation,
       placeSearchType: placeSearchType ?? this.placeSearchType,
@@ -85,7 +82,6 @@ class PlaceSearchState extends Equatable {
 
   @override
   List<Object?> get props => [
-        isDone,
         pickupLocation,
         destinationLocation,
         predictions,

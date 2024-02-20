@@ -41,8 +41,7 @@ class AutoCompletePredictionModel extends Equatable {
       'formatting': formatting,
     };
   }
-
-  factory AutoCompletePredictionModel.fromMap(Map<String, dynamic> map) {
+   factory AutoCompletePredictionModel.fromMap(Map<String, dynamic> map) {
     return AutoCompletePredictionModel(
       description: map['description'] as String,
       placeId: map['place_id'] as String,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_india_rider/route/route_name.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package/package.dart';
+
+import '../core/place_search_cubit.dart';
 
 class PickLocationFromMap extends StatelessWidget {
   const PickLocationFromMap({super.key});
@@ -18,8 +21,9 @@ class PickLocationFromMap extends StatelessWidget {
         child: Row(
           children: [
             OutlinedButton.icon(
-              onPressed: () =>
-                  context.pushNamed(RouteName.selectOnMap.subCName),
+              onPressed: () => context.pushNamed(RouteName.selectOnMap.subCName, pathParameters: {
+                    'searchType':context.read<PlaceSearchCubit>().state.placeSearchType.name
+                  }),
               style: OutlinedButton.styleFrom(
                 elevation: 5,
                 foregroundColor: color.onBackground,

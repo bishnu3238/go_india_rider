@@ -1,5 +1,5 @@
- import 'package:flutter_bloc/flutter_bloc.dart';
- import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,6 +34,7 @@ class _MapScreenState extends State<MapScreen> {
     return BlocBuilder<MapCubit, MapState>(builder: (context, state) {
       return GoogleMap(
         markers: cubit.markers,
+        zoomControlsEnabled: false,
         // circles: _circles,
         onMapCreated: _onMapCreated,
         onCameraMove: _onCameraMove,

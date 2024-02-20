@@ -15,6 +15,7 @@ class _ButtonScaleState extends State<ButtonScale> {
   Widget build(BuildContext context) {
     return AnimatedScale(
       scale: isPressed ? .97 : 1,
+
       duration: const Duration(milliseconds: 100),
       child: GestureDetector(
         onTap: () {

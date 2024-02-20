@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:package/package.dart';
 
 import '../../entity/map/searches/google_text_search_model.dart';
@@ -29,8 +30,12 @@ abstract class MapRepository {
   Future<Either<MapRepositoryFailure, PlaceAutoCompleteResponseModel>>
       placeAutoCompleteSearch(String query);
 
-  Future<String> getAddressFromGeographyCoordinates(Position position);
+  Future<Either<MapRepositoryFailure,dynamic>> getAddressFromGeographyCoordinates(LatLng latLng);
 
   Future<Either<MapRepositoryFailure, RouteDirectionModel>> getRouteDirections(
       String destination, String origin, TravelMode mode);
+
+  Future<Either<MapRepositoryFailure, dynamic>> getAddressFromPlaceId(String placeId);
+
+  Future<String> getPlaceId(String query);
 }
